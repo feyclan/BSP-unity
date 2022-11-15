@@ -314,7 +314,7 @@ public class BoardManager : MonoBehaviour
   
 
 
-    void Start()
+    public void Start()
     {
         SubDungeon rootSubDungeon = new SubDungeon(new Rect(0, 0, boardRows, boardColumns));
         CreateBSP(rootSubDungeon);
