@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
 		float directionY = Input.GetAxisRaw("Vertical");
 		
 		playerDirection = new Vector2(directionX, directionY).normalized;
+
     }
 	
     void FixedUpdate()
@@ -31,9 +32,5 @@ public class Player : MonoBehaviour
 	    rb.velocity = new Vector2(playerDirection.x * playerSpeed, playerDirection.y * playerSpeed);
 	}
 
-    private void OnTriggerEnter2D(Collider2D collider) {
-        Debug.Log("Trigger!");
-        bm.Start();
-    }
-  
+
 }  
