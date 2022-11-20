@@ -1,20 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Player : MonoBehaviour
 {
     public float playerSpeed;
     private Rigidbody2D rb;
 	private Vector2 playerDirection;
+  
+    //BoardManager bm;
+    public Scene scene;
 
-    BoardManager bm;
-	
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        bm = GameObject.FindGameObjectWithTag("Door").GetComponent<BoardManager>();
+        scene = SceneManager.GetActiveScene();
+        Debug.Log("Active Scene name is: " + scene.name + "\nActive Scene index: " + scene.buildIndex);
+        //bm = GameObject.FindGameObjectWithTag("Door").GetComponent<BoardManager>();
     }
 
     // Update is called once per frame
@@ -33,7 +38,8 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider) {
         Debug.Log("Trigger!");
-        bm.Start();
+        SceneManager.LoadScene(scene.buildIndex + 1, LoadSceneMode.Single); //TODO: should have a limit based on amount of scenes
+        //SceneManager.LoadScene("level2");
     }
   
 }  
