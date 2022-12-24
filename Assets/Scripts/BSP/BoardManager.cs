@@ -165,7 +165,6 @@ public class BoardManager : MonoBehaviour
                 {
                     int pick = Random.Range(1,3);
                     GameObject tile;
-                    Debug.Log(pick);
                     if(pick == 1)
                     {
                         tile = floorTile;
