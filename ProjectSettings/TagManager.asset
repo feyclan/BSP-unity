@@ -4,7 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Door
+  - EnemyFOV
+  - Ground
+  - Block
+  - Enemy
   layers:
   - Default
   - TransparentFX
