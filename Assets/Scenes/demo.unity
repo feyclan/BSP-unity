@@ -3104,6 +3104,8 @@ MonoBehaviour:
   m_rigidbody: {fileID: 2050180694}
   OnceJumpRayCheck: 0
   speed: {x: 10, y: 10}
+  board: {fileID: 69793608}
+  lastPosition: {x: 0, y: 0, z: 0}
 --- !u!70 &2050180693
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

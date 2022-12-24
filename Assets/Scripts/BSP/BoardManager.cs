@@ -9,7 +9,7 @@ public class BoardManager : MonoBehaviour
     public int minRoomSize, maxRoomSize;
     public GameObject floorTile;
     public GameObject corridorTile;
-    private GameObject[,] boardPositionsFloor;
+    public GameObject[,] boardPositionsFloor;
     public SubDungeon dungeon;
     public static List<Rect> corridors = new List<Rect>();
 
@@ -185,13 +185,25 @@ public class BoardManager : MonoBehaviour
         dungeon = rootSubDungeon;
         
         Debug.Log($"Root: {rootSubDungeon}");
+        boardPositionsFloor = new GameObject[boardRows, boardColumns];
+
 
         //rootSubDungeon.CreateCorridor();
         //CreateCorridorBetween(rootSubDungeon.left, rootSubDungeon.right);
-        boardPositionsFloor = new GameObject[boardRows, boardColumns];
-        Debug.Log($"Positions: {boardPositionsFloor}");
+        
+        // Debug.Log($"Positions: {boardPositionsFloor[0, 0].transform.position.x}, {boardPositionsFloor[0, 0].transform.position.y}");
         DrawCorridors(rootSubDungeon);
         DrawRooms(rootSubDungeon);
+        
+        
+        // for (int i = 0; i < boardRows; i++)
+        // {
+        //     for (int j = 0; j < boardColumns; j++)
+        //     {
+        //         Debug.Log(boardPositionsFloor[i, j]);
+        //         // boardPositionsFloor[i, j]
+        //     }
+        // }
     }
 
     public void Start()

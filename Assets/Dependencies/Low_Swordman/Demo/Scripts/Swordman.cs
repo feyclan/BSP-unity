@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Swordman : PlayerController
 {
+
+    public BoardManager board;
+    public Vector3 lastPosition;
     
     private void Start()
     {
@@ -22,6 +25,9 @@ public class Swordman : PlayerController
     {
         // Process the player movement
         ProcessInput();
+        
+        // Debug.Log($"Player current position: ({transform.position.x}, {transform.position.y}) => {}");
+        // board.boardPositionsFloor
     }
 
     public void ProcessInput()
@@ -82,5 +88,12 @@ public class Swordman : PlayerController
         {
             Filp(false);
         }
+        if (board.boardPositionsFloor[(int)transform.position.x, (int)transform.position.y] == null)
+        {
+            transform.position = lastPosition;
+            Debug.Log("Walking on nothing");
+        }
+
+        lastPosition = transform.position;
     }
 }
