@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using BSP;
 using UnityEngine;
 
 public class BoardManager : MonoBehaviour
@@ -9,149 +10,12 @@ public class BoardManager : MonoBehaviour
     public GameObject floorTile;
     public GameObject corridorTile;
     private GameObject[,] boardPositionsFloor;
+    public SubDungeon dungeon;
     public static List<Rect> corridors = new List<Rect>();
-
-
-    public class SubDungeon
-    {
-        public SubDungeon left, right;
-        public Rect rect;
-        public Rect room = new Rect(-1, -1, 0, 0); // i.e null
-        public int debugId;
-
-        private static int debugCounter = 0;
-
-        public Rect GetRoom()
-        {
-            if (IAmLeaf())
-            {
-                return room;
-            }
-            if (left != null)
-            {
-                Rect lroom = left.GetRoom();
-                if (lroom.x != -1)
-                {
-                    return lroom;
-                }
-            }
-            if (right != null)
-            {
-                Rect rroom = right.GetRoom();
-                if (rroom.x != -1)
-                {
-                    return rroom;
-                }
-            }
-
-            // workaround non nullable structs
-            return new Rect(-1, -1, 0, 0);
-        }
-
-
-        public SubDungeon(Rect mrect)
-        {
-            rect = mrect;
-            debugId = debugCounter;
-            debugCounter++;
-        }
-
-        public void CreateRoom()
-        {
-            if (left != null)
-            {
-                left.CreateRoom();
-            }
-            if (right != null)
-            {
-                right.CreateRoom();
-            }
-            if (IAmLeaf())
-            {
-                int roomWidth = (int)Random.Range(rect.width / 2, rect.width - 2);
-                int roomHeight = (int)Random.Range(rect.height / 2, rect.height - 2);
-                int roomX = (int)Random.Range(1, rect.width - roomWidth - 1);
-                int roomY = (int)Random.Range(1, rect.height - roomHeight - 1);
-
-                // room position will be absolute in the board, not relative to the sub-dungeon
-                room = new Rect(rect.x + roomX, rect.y + roomY, roomWidth, roomHeight);
-                Debug.Log("Created room " + room + " in sub-dungeon " + debugId + " " + rect);
-            }
-
-            if (left != null && right != null)
-            {
-
-                CreateCorridorBetween(left, right);
-            }
-            
-
-        }
-
-        public bool IAmLeaf()
-        {
-            return left == null && right == null;
-        }
-
-        public bool Split(int minRoomSize, int maxRoomSize)
-        {
-            if (!IAmLeaf())
-            {
-                return false;
-            }
-
-            // choose a vertical or horizontal split depending on the proportions
-            // i.e. if too wide split vertically, or too long horizontally,
-            // or if nearly square choose vertical or horizontal at random
-            bool splitH;
-            if (rect.width / rect.height >= 1.25)
-            {
-                splitH = false;
-            }
-            else if (rect.height / rect.width >= 1.25)
-            {
-                splitH = true;
-            }
-            else
-            {
-                splitH = Random.Range(0.0f, 1.0f) > 0.5;
-            }
-
-            if (Mathf.Min(rect.height, rect.width) / 2 < minRoomSize)
-            {
-                Debug.Log("Sub-dungeon " + debugId + " will be a leaf");
-                return false;
-            }
-
-            if (splitH)
-            {
-                // split so that the resulting sub-dungeons widths are not too small
-                // (since we are splitting horizontally)
-                int split = Random.Range(minRoomSize, (int)(rect.width - minRoomSize));
-
-                left = new SubDungeon(new Rect(rect.x, rect.y, rect.width, split));
-                right = new SubDungeon(
-                  new Rect(rect.x, rect.y + split, rect.width, rect.height - split));
-            }
-            else
-            {
-                int split = Random.Range(minRoomSize, (int)(rect.height - minRoomSize));
-
-                left = new SubDungeon(new Rect(rect.x, rect.y, split, rect.height));
-                right = new SubDungeon(
-                  new Rect(rect.x + split, rect.y, rect.width - split, rect.height));
-            }
-
-            return true;
-        }
-
-  
-
-
-    }
 
     public void CreateBSP(SubDungeon subDungeon)
     {
-        Debug.Log("Splitting sub-dungeon " + subDungeon.debugId + ": " + subDungeon.rect);
+        // Debug.Log("Splitting sub-dungeon " + subDungeon.debugId + ": " + subDungeon.rect);
         if (subDungeon.IAmLeaf())
         {
             // if the sub-dungeon is too large
@@ -162,9 +26,9 @@ public class BoardManager : MonoBehaviour
 
                 if (subDungeon.Split(minRoomSize, maxRoomSize))
                 {
-                    Debug.Log("Splitted sub-dungeon " + subDungeon.debugId + " in "
-                      + subDungeon.left.debugId + ": " + subDungeon.left.rect + ", "
-                      + subDungeon.right.debugId + ": " + subDungeon.right.rect);
+                    // Debug.Log("Splitted sub-dungeon " + subDungeon.debugId + " in "
+                    //   + subDungeon.left.debugId + ": " + subDungeon.left.rect + ", "
+                    //   + subDungeon.right.debugId + ": " + subDungeon.right.rect);
 
                     CreateBSP(subDungeon.left);
                     CreateBSP(subDungeon.right);
@@ -180,7 +44,7 @@ public class BoardManager : MonoBehaviour
         Rect lroom = left.GetRoom();
         Rect rroom = right.GetRoom();
 
-        Debug.Log("Creating corridor(s) between " + left.debugId + "(" + lroom + ") and " + right.debugId + " (" + rroom + ")");
+        // Debug.Log("Creating corridor(s) between " + left.debugId + "(" + lroom + ") and " + right.debugId + " (" + rroom + ")");
 
         // attach the corridor to a random point in each room
         Vector2 lpoint = new Vector2((int)Random.Range(lroom.x + 1, lroom.xMax - 1), (int)Random.Range(lroom.y + 1, lroom.yMax - 1));
@@ -197,7 +61,7 @@ public class BoardManager : MonoBehaviour
         int w = (int)(lpoint.x - rpoint.x);
         int h = (int)(lpoint.y - rpoint.y);
 
-        Debug.Log("lpoint: " + lpoint + ", rpoint: " + rpoint + ", w: " + w + ", h: " + h);
+        // Debug.Log("lpoint: " + lpoint + ", rpoint: " + rpoint + ", w: " + w + ", h: " + h);
 
         // if the points are not aligned horizontally
         if (w != 0)
@@ -250,11 +114,11 @@ public class BoardManager : MonoBehaviour
         }
 
 
-        Debug.Log("Corridors: ");
-        foreach (Rect corridor in corridors)
-        {
-            Debug.Log("corridor: " + corridor);
-        }
+        // Debug.Log("Corridors: ");
+        // foreach (Rect corridor in corridors)
+        // {
+        //     Debug.Log("corridor: " + corridor);
+        // }
     }
 
 
@@ -311,20 +175,28 @@ public class BoardManager : MonoBehaviour
         }
     }
 
-  
 
-
-    public void Start()
+    public void Initialize()
     {
         SubDungeon rootSubDungeon = new SubDungeon(new Rect(0, 0, boardRows, boardColumns));
         CreateBSP(rootSubDungeon);
         rootSubDungeon.CreateRoom();
 
+        dungeon = rootSubDungeon;
+        
+        Debug.Log($"Root: {rootSubDungeon}");
+
         //rootSubDungeon.CreateCorridor();
         //CreateCorridorBetween(rootSubDungeon.left, rootSubDungeon.right);
         boardPositionsFloor = new GameObject[boardRows, boardColumns];
+        Debug.Log($"Positions: {boardPositionsFloor}");
         DrawCorridors(rootSubDungeon);
         DrawRooms(rootSubDungeon);
+    }
+
+    public void Start()
+    {
+        
 
     }
 }
