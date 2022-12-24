@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Swordman : PlayerController
 {
-    
+    private AudioSource source;
     private void Start()
     {
         //-- Retrieve player's components --//
@@ -14,6 +14,7 @@ public class Swordman : PlayerController
         health = this.transform.GetComponent<Health>();
         // var player = GameObject.FindGameObjectsWithTag("Player")[0];
         mainPlayer = gameObject.GetComponent<MainPlayer>();
+        source = GetComponent<AudioSource>();
     }
 
 
@@ -49,6 +50,7 @@ public class Swordman : PlayerController
             if (Input.GetKey(KeyCode.Mouse0))
             {
                 m_Anim.Play("Attack");
+                source.Play();
             }
 
             if (Input.GetKey(KeyCode.Mouse1))
