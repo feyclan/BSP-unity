@@ -111,19 +111,18 @@ public class Demo_GM : MonoBehaviour {
             Color myColor = new Color32(180, 180, 180, 255);
 
             Demo_GM.Gm.UIImage[4].color = myColor;
-
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-
-
-
-            Color myColor = new Color32(180, 180, 180, 255);
-
-            Demo_GM.Gm.UIImage[5].color = myColor;
-
-        }
+        // if (Input.GetKeyDown(KeyCode.Mouse1))
+        // {
+        //
+        //
+        //
+        //     Color myColor = new Color32(180, 180, 180, 255);
+        //
+        //     Demo_GM.Gm.UIImage[5].color = myColor;
+        //
+        // }
     }
 
 }
