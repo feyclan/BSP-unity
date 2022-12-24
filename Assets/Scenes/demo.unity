@@ -237,10 +237,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0cfaaf64af512c4dbfd584788e9c8f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardRows: 20
-  boardColumns: 20
-  minRoomSize: 5
-  maxRoomSize: 8
+  boardRows: 30
+  boardColumns: 30
+  minRoomSize: 8
+  maxRoomSize: 10
   floorTile: {fileID: 7971457949744144338, guid: c24ac1642b9953142b37f930a865e98c, type: 3}
   corridorTile: {fileID: 8331066786387166986, guid: 79b7a22ec8bb2a542900acf04c9ea491, type: 3}
 --- !u!4 &69793609
@@ -488,6 +488,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 163041935}
+  - component: {fileID: 163041936}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -513,6 +514,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &163041936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163041934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a1e54bc6aecaa34f9348d1e1de0cda8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 2050180696}
+  board: {fileID: 69793608}
 --- !u!1 &229628229
 GameObject:
   m_ObjectHideFlags: 0
@@ -1861,6 +1876,9 @@ MonoBehaviour:
   target: {fileID: 2050180695}
   distance: 10
   followSpeed: 5
+  minZoom: 1
+  maxZoom: 20
+  zoomSpeed: 1
 --- !u!1 &1097860148
 GameObject:
   m_ObjectHideFlags: 0
