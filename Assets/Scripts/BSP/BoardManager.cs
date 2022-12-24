@@ -163,8 +163,9 @@ public class BoardManager : MonoBehaviour
             {
                 for (int j = (int)subDungeon.room.y; j < subDungeon.room.yMax; j++)
                 {
-                    int pick = Random.Range(1,2);
+                    int pick = Random.Range(1,3);
                     GameObject tile;
+                    Debug.Log(pick);
                     if(pick == 1)
                     {
                         tile = floorTile;
