@@ -153,10 +153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 115a505b22352b76c90fd183b2ba2daa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minXPosition: -10
-  minYPosition: -4
-  maxXPosition: 10
-  maxYPosition: 4
   _initialState: {fileID: 11400000, guid: 7791fd9cdf6e5fe94a91b7147165dba4, type: 2}
 --- !u!114 &7789571942087407222
 MonoBehaviour:
@@ -172,6 +168,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   txt: {fileID: 5595802878880243967}
+--- !u!114 &8295729803644192387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5522060877131175046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f376fea021459184bbdc3aaecbde34a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5595802878880243967 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 787315938515949055, guid: 6111a021532c29d018cd67112fecb343, type: 3}

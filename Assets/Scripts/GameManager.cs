@@ -64,32 +64,24 @@ public class GameManager : MonoBehaviour
 
     private void PlaceNPC()
     {
-        var room = board.dungeon; 
-        // foreach (var room in board.dungeons)
+        // var room = board.dungeons[0]; 
+        foreach (var room in board.dungeons)
         {
             for (var j = 0; j < enemiesInLevel; j++)
             {
                 // compute the x- and y- spawning coordinates of the NPC
                 int randomX = Random.Range(Mathf.FloorToInt(room.room.x), Mathf.CeilToInt(room.room.x + room.room.width));
                 int randomY = Random.Range(Mathf.FloorToInt(room.room.y), Mathf.CeilToInt(room.room.y + room.room.height));
-            
+                // int randomX = Mathf.RoundToInt(room.room.x);
+                // int randomY = Mathf.RoundToInt(room.room.y);
+                
                 var npcGO = Instantiate(npc, new Vector3(randomX, randomY, 0f), Quaternion.identity);
+                npcGO.transform.localPosition = new Vector3(randomX, randomY, 0f);
+                Debug.Log($"Supposed to be placed at ({randomX}, {randomY}");
                 npcGO.transform.parent = npcParent.transform; 
+                //-- Assign the room to the zombie --//
+                npcGO.GetComponent<Zombie>().assignedRoom = room;
             }
-        }
-
-        for (var i = 0; i < enemiesInLevel; i++)
-        {
-            // //-- Retrieve a random room in the dungeon --//
-            // int randomIndex = Random.Range(0, board.dungeons.Count);
-            // var randomRoom = board.dungeons[randomIndex];
-            //
-            // // compute the x- and y- spawning coordinates of the NPC
-            // int randomX = Random.Range(Mathf.FloorToInt(randomRoom.room.x), Mathf.CeilToInt(randomRoom.room.x + randomRoom.room.width));
-            // int randomY = Random.Range(Mathf.FloorToInt(randomRoom.room.y), Mathf.CeilToInt(randomRoom.room.y + randomRoom.room.height));
-            //
-            // var npcGO = Instantiate(npc, new Vector3(randomX, randomY, 0f), Quaternion.identity);
-            // npcGO.transform.parent = npcParent.transform;
         }
     }
 
