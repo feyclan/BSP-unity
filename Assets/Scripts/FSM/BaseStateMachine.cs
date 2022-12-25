@@ -4,12 +4,6 @@ namespace FSM
 {
     public class BaseStateMachine : MonoBehaviour
     {
-        //-- Borders --//
-        public float minXPosition = -10.0f; // left border
-        public float minYPosition = -4.0f; // left border
-        public float maxXPosition = 10.0f; //  right border
-        public float maxYPosition = 4.0f; //  right border
-        
         // Initial state of the FSM
         [SerializeField] private BaseState _initialState;
 
@@ -26,9 +20,6 @@ namespace FSM
         {
             // execute the action of the current station
             CurrentState.Execute(this);
-            var pos = gameObject.transform.position;
-            gameObject.transform.position = new Vector3(Mathf.Clamp(transform.position.x, minXPosition, maxXPosition), 
-                Mathf.Clamp(transform.position.y, minYPosition, maxYPosition), pos.z);
         }
     }
 }
