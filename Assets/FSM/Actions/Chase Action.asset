@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4b5548890fa4e90bd0ecb9ad459a8d1, type: 3}
   m_Name: Chase Action
   m_EditorClassIdentifier: 
+  speed: 5

@@ -22,6 +22,7 @@ namespace FSM
             }
 
             //-- Chase the player
+            Debug.Log("Chasing player");
             var player = GameObject.FindGameObjectsWithTag("Player")[0];
             float step = speed * Time.deltaTime;
 

@@ -191,8 +191,6 @@ public class BoardManager : MonoBehaviour
         // Debug.Log($"Positions: {boardPositionsFloor[0, 0].transform.position.x}, {boardPositionsFloor[0, 0].transform.position.y}");
         DrawCorridors(rootSubDungeon);
         DrawRooms(rootSubDungeon);
-        AddMeshLinks();
-
         PlaceExit();
     }
 
@@ -219,41 +217,4 @@ public class BoardManager : MonoBehaviour
         var doorGO = Instantiate(door, new Vector3(doorPosX, doorPosY, 0f), Quaternion.identity);
         doorGO.transform.parent = transform;
     }
-    
-    //-- NavMesh --//
-    // connect tiles using NavMesh system
-    private void AddMeshLinks()
-    {
-        for (int i = 0; i < boardColumns; i++)
-        {
-            for (int j = 0; j < boardRows; j++)
-            {
-                if (boardPositionsFloor[i, j] != null)
-                {
-                    // Left
-                    if (i - 1 >= 0 && boardPositionsFloor[i - 1, j] != null) {Connect(i - 1, j, i, j);}
-                    // Right
-                    if (i + 1 < boardColumns && boardPositionsFloor[i+1, j] != null) {Connect(i+1, j, i, j);}
-                    // Top
-                    if (j + 1 < boardRows && boardPositionsFloor[i, j+1] != null) {Connect(i, j+1, i, j);}
-                    // Down
-                    if (j-1 >= 0 && boardPositionsFloor[i, j-1] != null) {Connect(i, j-1, i, j);}
-                }
-            }
-        }
-    }
-
-    private void Connect(int x1, int y1, int x2, int y2)
-    {
-        
-        var t1 = boardPositionsFloor[x1, y1].GetComponent<OffMeshLink>();
-        var t2 = boardPositionsFloor[x2, y2].GetComponent<OffMeshLink>();
-        //-- T1 --//
-        t1.startTransform = t1.transform;
-        t1.endTransform = t2.transform;
-        //-- T2 --//
-        t2.startTransform = t2.transform;
-        t2.endTransform = t1.transform;
-    }
-    
 }
