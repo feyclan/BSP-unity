@@ -63,7 +63,7 @@ public class Swordman : PlayerController
             }
             else
             {
-                if (m_MoveX == 0)
+                if (m_MoveX == 0 && m_MoveY == 0)
                 {
                     if (!OnceJumpRayCheck)
                         m_Anim.Play("Idle");

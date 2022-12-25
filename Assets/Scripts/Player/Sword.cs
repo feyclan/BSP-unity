@@ -21,9 +21,12 @@ public class Sword : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider2D)
     {
-        //-- Retrieve the Health controller NPC that is hit --//
-        var h = collider2D.gameObject.GetComponent<Health>();
-        //-- 
-        h.Hit(player, damage);
+        if (collider2D.tag == "Enemy")
+        {
+            //-- Retrieve the Health controller NPC that is hit --//
+            var h = collider2D.gameObject.GetComponent<Health>();
+            //-- Hit the player --//
+            h.Hit(player, damage);
+        }
     }
 }

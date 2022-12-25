@@ -11,10 +11,21 @@ public class GameManager : MonoBehaviour
     {
         //-- Initialize the board --//
         board.Initialize();
-        
-        //-- Move the player to the initial position --//
-        Debug.Log($"Board position: {board.dungeon.room.x}, {board.dungeon.room.y}");
-        Debug.Log($"Player position: {player.transform.position.x}, {player.transform.position.y}");
+        PlacePlayer();
+    }
+
+    public void NextLevel()
+    {
+        //-- Destroy the old dungeon --//
+        board.Reset();
+        //-- Generate the new dungeon --//
+        board.Initialize();
+        //-- Place the player in the new dungeon --//
+        PlacePlayer();
+    }
+
+    public void PlacePlayer()
+    {
         //-- Retrieve the coordinates of the first room --//
         var origRoom = board.dungeon.GetRoom();
         

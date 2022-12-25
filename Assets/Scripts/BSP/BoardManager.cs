@@ -10,7 +10,9 @@ public class BoardManager : MonoBehaviour
     public GameObject floorTile;
     public GameObject corridorTile;
     public GameObject[,] boardPositionsFloor;
+    public GameObject door;
     public SubDungeon dungeon;
+    public List<SubDungeon> dungeons = new List<SubDungeon>(); 
     public static List<Rect> corridors = new List<Rect>();
 
     public void CreateBSP(SubDungeon subDungeon)
@@ -158,6 +160,7 @@ public class BoardManager : MonoBehaviour
         }
         if (subDungeon.IAmLeaf())
         {
+            dungeons.Add(subDungeon);
             for (int i = (int)subDungeon.room.x; i < subDungeon.room.xMax; i++)
             {
                 for (int j = (int)subDungeon.room.y; j < subDungeon.room.yMax; j++)
@@ -184,7 +187,7 @@ public class BoardManager : MonoBehaviour
 
         dungeon = rootSubDungeon;
         
-        Debug.Log($"Root: {rootSubDungeon}");
+        // Debug.Log($"Root: {rootSubDungeon}");
         boardPositionsFloor = new GameObject[boardRows, boardColumns];
 
 
@@ -196,19 +199,25 @@ public class BoardManager : MonoBehaviour
         DrawRooms(rootSubDungeon);
         
         
-        // for (int i = 0; i < boardRows; i++)
-        // {
-        //     for (int j = 0; j < boardColumns; j++)
-        //     {
-        //         Debug.Log(boardPositionsFloor[i, j]);
-        //         // boardPositionsFloor[i, j]
-        //     }
-        // }
+        //-- Place exit of dungeon in a random room --//
+        var lastRoom = dungeons[dungeons.Count-1];
+        var doorPosX = (lastRoom.room.position.x + lastRoom.room.width / 2);
+        var doorPosY = lastRoom.room.position.y+lastRoom.room.height;
+        var doorGO = Instantiate(door, new Vector3(doorPosX, doorPosY, 0f), Quaternion.identity);
+        doorGO.transform.parent = transform;
     }
 
-    public void Start()
+    public void Reset()
     {
-        
+        // Iterate through the children of the parent object
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            // Destroy the child object
+            GameObject.Destroy(gameObject.transform.GetChild(i).gameObject);
+        }
 
+        dungeons = new List<SubDungeon>();
+        boardPositionsFloor = new GameObject[boardRows, boardColumns];
+        corridors = new List<Rect>();
     }
 }
