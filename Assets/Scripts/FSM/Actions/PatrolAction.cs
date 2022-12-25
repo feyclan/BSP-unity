@@ -23,6 +23,10 @@ namespace FSM
             {
                 zombie.NextPatrolPoint();
             }
+            // clamp the position of the NPC into the room
+            var posX = Mathf.Clamp(stateMachine.gameObject.transform.position.x, zombie.assignedRoom.room.x, zombie.assignedRoom.room.x+zombie.assignedRoom.room.width);
+            var posY = Mathf.Clamp(stateMachine.gameObject.transform.position.y, zombie.assignedRoom.room.y, zombie.assignedRoom.room.y+zombie.assignedRoom.room.height);
+            stateMachine.gameObject.transform.position = new Vector3(posX, posY, 0);
         }
     }
 }

@@ -16,6 +16,11 @@ namespace FSM
             float step = zombie.chasingSpeed * Time.deltaTime;
             // move sprite towards the target location
             stateMachine.gameObject.transform.position = Vector2.MoveTowards(stateMachine.gameObject.transform.position, player.transform.position, step);
+            // clamp the position of the NPC into the room
+            var posX = Mathf.Clamp(stateMachine.gameObject.transform.position.x, zombie.assignedRoom.room.x, zombie.assignedRoom.room.x+zombie.assignedRoom.room.width);
+            var posY = Mathf.Clamp(stateMachine.gameObject.transform.position.y, zombie.assignedRoom.room.y, zombie.assignedRoom.room.y+zombie.assignedRoom.room.height);
+            stateMachine.gameObject.transform.position = new Vector3(posX, posY, 0);
+
         }
     }
 }
