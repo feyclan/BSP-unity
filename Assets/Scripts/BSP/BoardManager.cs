@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using BSP;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BoardManager : MonoBehaviour
 {
@@ -114,13 +115,6 @@ public class BoardManager : MonoBehaviour
                 corridors.Add(new Rect((int)rpoint.x, (int)rpoint.y, 1, Mathf.Abs(h)));
             }
         }
-
-
-        // Debug.Log("Corridors: ");
-        // foreach (Rect corridor in corridors)
-        // {
-        //     Debug.Log("corridor: " + corridor);
-        // }
     }
 
 
@@ -197,14 +191,9 @@ public class BoardManager : MonoBehaviour
         // Debug.Log($"Positions: {boardPositionsFloor[0, 0].transform.position.x}, {boardPositionsFloor[0, 0].transform.position.y}");
         DrawCorridors(rootSubDungeon);
         DrawRooms(rootSubDungeon);
-        
-        
-        //-- Place exit of dungeon in a random room --//
-        var lastRoom = dungeons[dungeons.Count-1];
-        var doorPosX = (lastRoom.room.position.x + lastRoom.room.width / 2);
-        var doorPosY = lastRoom.room.position.y+lastRoom.room.height;
-        var doorGO = Instantiate(door, new Vector3(doorPosX, doorPosY, 0f), Quaternion.identity);
-        doorGO.transform.parent = transform;
+        AddMeshLinks();
+
+        PlaceExit();
     }
 
     public void Reset()
@@ -213,11 +202,58 @@ public class BoardManager : MonoBehaviour
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
             // Destroy the child object
-            GameObject.Destroy(gameObject.transform.GetChild(i).gameObject);
+            Destroy(gameObject.transform.GetChild(i).gameObject);
         }
 
         dungeons = new List<SubDungeon>();
         boardPositionsFloor = new GameObject[boardRows, boardColumns];
         corridors = new List<Rect>();
     }
+
+    public void PlaceExit()
+    {
+        //-- Place exit of dungeon in a random room --//
+        var lastRoom = dungeons[dungeons.Count-1];
+        var doorPosX = (lastRoom.room.position.x + lastRoom.room.width / 2);
+        var doorPosY = lastRoom.room.position.y+lastRoom.room.height;
+        var doorGO = Instantiate(door, new Vector3(doorPosX, doorPosY, 0f), Quaternion.identity);
+        doorGO.transform.parent = transform;
+    }
+    
+    //-- NavMesh --//
+    // connect tiles using NavMesh system
+    private void AddMeshLinks()
+    {
+        for (int i = 0; i < boardColumns; i++)
+        {
+            for (int j = 0; j < boardRows; j++)
+            {
+                if (boardPositionsFloor[i, j] != null)
+                {
+                    // Left
+                    if (i - 1 >= 0 && boardPositionsFloor[i - 1, j] != null) {Connect(i - 1, j, i, j);}
+                    // Right
+                    if (i + 1 < boardColumns && boardPositionsFloor[i+1, j] != null) {Connect(i+1, j, i, j);}
+                    // Top
+                    if (j + 1 < boardRows && boardPositionsFloor[i, j+1] != null) {Connect(i, j+1, i, j);}
+                    // Down
+                    if (j-1 >= 0 && boardPositionsFloor[i, j-1] != null) {Connect(i, j-1, i, j);}
+                }
+            }
+        }
+    }
+
+    private void Connect(int x1, int y1, int x2, int y2)
+    {
+        
+        var t1 = boardPositionsFloor[x1, y1].GetComponent<OffMeshLink>();
+        var t2 = boardPositionsFloor[x2, y2].GetComponent<OffMeshLink>();
+        //-- T1 --//
+        t1.startTransform = t1.transform;
+        t1.endTransform = t2.transform;
+        //-- T2 --//
+        t2.startTransform = t2.transform;
+        t2.endTransform = t1.transform;
+    }
+    
 }
