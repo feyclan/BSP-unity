@@ -1,10 +1,13 @@
 using BSP;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public MainPlayer player;
     public BoardManager board;
+    private int currentLvl = 1;
+    public TextMeshProUGUI levelTxt;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +25,9 @@ public class GameManager : MonoBehaviour
         board.Initialize();
         //-- Place the player in the new dungeon --//
         PlacePlayer();
+        //-- Update the text that indicates the current level --//
+        currentLvl += 1;
+        levelTxt.text = $"Level: {currentLvl}";
     }
 
     public void PlacePlayer()
