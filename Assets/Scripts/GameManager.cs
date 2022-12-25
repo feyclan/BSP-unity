@@ -70,17 +70,18 @@ public class GameManager : MonoBehaviour
             for (var j = 0; j < enemiesInLevel; j++)
             {
                 // compute the x- and y- spawning coordinates of the NPC
-                int randomX = Random.Range(Mathf.FloorToInt(room.room.x), Mathf.CeilToInt(room.room.x + room.room.width));
-                int randomY = Random.Range(Mathf.FloorToInt(room.room.y), Mathf.CeilToInt(room.room.y + room.room.height));
-                // int randomX = Mathf.RoundToInt(room.room.x);
-                // int randomY = Mathf.RoundToInt(room.room.y);
+                int randomX = Mathf.RoundToInt(room.room.x);
+                int randomY = Mathf.RoundToInt(room.room.y);
                 
                 var npcGO = Instantiate(npc, new Vector3(randomX, randomY, 0f), Quaternion.identity);
-                npcGO.transform.localPosition = new Vector3(randomX, randomY, 0f);
-                Debug.Log($"Supposed to be placed at ({randomX}, {randomY}");
-                npcGO.transform.parent = npcParent.transform; 
+                var zombie = npcGO.GetComponent<Zombie>();
                 //-- Assign the room to the zombie --//
-                npcGO.GetComponent<Zombie>().assignedRoom = room;
+                zombie.assignedRoom = room;
+                zombie.InitializePatrolRoute();
+                // retrieve the spawn point of this zombie
+                var position = zombie.patrolRoute[j];
+                npcGO.transform.localPosition = position;
+                npcGO.transform.parent = npcParent.transform; 
             }
         }
     }
