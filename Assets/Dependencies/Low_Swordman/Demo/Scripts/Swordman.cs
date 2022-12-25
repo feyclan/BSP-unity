@@ -80,7 +80,7 @@ public class Swordman : PlayerController
         Vector3 movement = new Vector3(speed.x * m_MoveX, speed.y * m_MoveY, 0);
         movement *= Time.deltaTime;
         transform.transform.Translate(movement);
-        if (m_MoveX < 0)
+        if (m_MoveX <= 0)
         {
             Filp(true);
         }
@@ -88,10 +88,13 @@ public class Swordman : PlayerController
         {
             Filp(false);
         }
-        if (board.boardPositionsFloor[(int)transform.position.x, (int)transform.position.y] == null)
+
+        //-- Limit movement to dungeon only --//
+        var posX = Mathf.RoundToInt(transform.position.x);;
+        var posY = Mathf.RoundToInt(transform.position.y);
+        if (board.boardPositionsFloor[posX, posY] == null)
         {
             transform.position = lastPosition;
-            Debug.Log("Walking on nothing");
         }
 
         lastPosition = transform.position;
