@@ -70,8 +70,8 @@ public class GameManager : MonoBehaviour
             var randomRoom = board.dungeons[randomIndex];
         
             // compute the x- and y- spawning coordinates of the NPC
-            int randomX = Random.Range(Mathf.RoundToInt(randomRoom.room.x), Mathf.RoundToInt(randomRoom.room.x + randomRoom.room.width));
-            int randomY = Random.Range(Mathf.RoundToInt(randomRoom.room.y), Mathf.RoundToInt(randomRoom.room.y + randomRoom.room.height));
+            int randomX = Random.Range(Mathf.FloorToInt(randomRoom.room.x), Mathf.CeilToInt(randomRoom.room.x + randomRoom.room.width));
+            int randomY = Random.Range(Mathf.FloorToInt(randomRoom.room.y), Mathf.CeilToInt(randomRoom.room.y + randomRoom.room.height));
             
             var npcGO = Instantiate(npc, new Vector3(randomX, randomY, 0f), Quaternion.identity);
             npcGO.transform.parent = npcParent.transform;
