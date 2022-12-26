@@ -11,13 +11,19 @@ public class Swordman : MonoBehaviour
     //-- Objects of the controller --//
     public Rigidbody2D m_rigidbody;
     private CapsuleCollider2D m_CapsulleCollider;
-    private Animator m_Anim;
+    public Animator m_Anim;
     private Health health;
     private MainPlayer mainPlayer;
     private float m_MoveX;
     private float m_MoveY;
     private bool OnceJumpRayCheck;
     public Vector2 speed = new(50, 50);
+    public int attackCounter = 0;
+    
+    public GameObject collidingEnemy;
+
+    public bool isAttacking = false;
+    // actually look for where tf the mouse is checked and store the variable there instead
     
     
     private void Start()
@@ -40,6 +46,19 @@ public class Swordman : MonoBehaviour
     {
         // Process the player movement
         ProcessInput();
+        HandleAttack();
+    }
+
+    private void HandleAttack()
+    {
+        // Check if the left mouse button is down
+        if (Input.GetMouseButtonDown(0))
+        {
+            // The left mouse button is down, so set the attacking flag to true
+            isAttacking = true;
+            m_Anim.Play("Attack");
+            attackCounter += 1;
+        }
     }
 
     public void ProcessInput()
@@ -59,11 +78,6 @@ public class Swordman : MonoBehaviour
         // Attack only attacks when not running
         if (!m_Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
-            if (Input.GetKey(KeyCode.Mouse0))
-            {
-                m_Anim.Play("Attack");
-            }
-
             if (Input.GetKey(KeyCode.Mouse1))
             {
                 m_Anim.Play("Sit");

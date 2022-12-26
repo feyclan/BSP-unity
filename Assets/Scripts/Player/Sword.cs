@@ -1,32 +1,48 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Sword : MonoBehaviour
+namespace Player
 {
-    public GameObject player;
-
-    public int damage = 10;
-    // Start is called before the first frame update
-    void Start()
+    public class Sword : MonoBehaviour
     {
-        
-    }
+        //-- References to objects --//
+        // reference to the Swordman controller of the player
+        public Swordman player;
+        // reference to the animator of the player
+        public Animator animator;
+        // amount of damage that the player does to the enemies
+        public int damage = 10;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void OnTriggerEnter2D(Collider2D collider2D)
-    {
-        if (collider2D.tag == "Enemy")
+        /// <summary>
+        /// When the sword enters a collision with an object we check whether the object it collides with is an enemy.
+        /// If this is the case we can trigger a hit to the Enemy
+        /// </summary>
+        /// <param name="collider">The object the sword collides with</param>
+        void OnTriggerEnter2D(Collider2D collider)
         {
-            //-- Retrieve the Health controller NPC that is hit --//
-            var h = collider2D.gameObject.GetComponent<Health>();
-            //-- Hit the player --//
-            h.Hit(player, damage);
+            //-- Detect collisions of the sword with the enemy --//
+            if (collider.CompareTag("Enemy"))
+            {
+                // Get the current animation clip info
+                AnimatorClipInfo[] clipInfo = animator.GetCurrentAnimatorClipInfo(0);
+                // Check if any animations are currently being played
+                if (clipInfo.Length > 0)
+                {
+                    // Get the name of the first animation clip
+                    string clipName = clipInfo[0].clip.name;
+                    // Check if the player is currently attacking to avoid counting bumps as attacks
+                    if (clipName == "Attack")
+                    {
+                        // Each animation trigger should only count towards one hit, we keep track of how often the animation has been triggered
+                        if (player.attackCounter > 1)
+                        {
+                            //-- Retrieve the Health controller NPC that is hit --//
+                            collider.GetComponent<Health>().Hit(player.gameObject, damage);
+                            //-- Remove one from the counter --//
+                            player.attackCounter -= 1;
+                        }
+                    }
+                }
+            }
         }
     }
 }
