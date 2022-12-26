@@ -4,7 +4,7 @@ public class Swordman : MonoBehaviour
 {
     //-- Reference to managers --//
     public BoardManager board;
-    
+    private AudioSource source;
     // last position of the player, used to avoid moving out of the dungeon
     public Vector3 lastPosition;
     
@@ -35,6 +35,7 @@ public class Swordman : MonoBehaviour
         health = transform.GetComponent<Health>();
         // var player = GameObject.FindGameObjectsWithTag("Player")[0];
         mainPlayer = gameObject.GetComponent<MainPlayer>();
+        source = GetComponent<AudioSource>();
     }
     
     private void Filp(bool bLeft)
@@ -57,6 +58,7 @@ public class Swordman : MonoBehaviour
             // The left mouse button is down, so set the attacking flag to true
             isAttacking = true;
             m_Anim.Play("Attack");
+            source.Play();
             attackCounter += 1;
         }
     }

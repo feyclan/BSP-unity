@@ -241,8 +241,9 @@ MonoBehaviour:
   boardColumns: 50
   minRoomSize: 8
   maxRoomSize: 10
-  floorTile: {fileID: 7971457949744144338, guid: c24ac1642b9953142b37f930a865e98c, type: 3}
-  corridorTile: {fileID: 8331066786387166986, guid: 79b7a22ec8bb2a542900acf04c9ea491, type: 3}
+  floorTile: {fileID: 7856885909969643882, guid: 3b15340d26e42f44d883f5e005354e93, type: 3}
+  floorTile22: {fileID: 6592735588347440970, guid: 155b8a853de7cc94b8764d20801e6ca2, type: 3}
+  corridorTile: {fileID: 3069991288262230411, guid: 0de9ba621757d3f4f9665e79fc5ef66b, type: 3}
   well: {fileID: 4863355952554908545, guid: d39672cc18ccd9545840277c51264e6f, type: 3}
   door: {fileID: 3674335524305204184, guid: 73b3f124f09cdda43b4e45de966261a1, type: 3}
 --- !u!4 &69793609
@@ -3037,6 +3038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2050180691}
+  animator: {fileID: 0}
   damage: 10
 --- !u!70 &2023909760
 CapsuleCollider2D:
@@ -3204,6 +3206,7 @@ GameObject:
   - component: {fileID: 2050180696}
   - component: {fileID: 2050180697}
   - component: {fileID: 2050180698}
+  - component: {fileID: 2050180699}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -3226,7 +3229,11 @@ MonoBehaviour:
   board: {fileID: 69793608}
   lastPosition: {x: 0, y: 0, z: 0}
   m_rigidbody: {fileID: 2050180694}
+  m_Anim: {fileID: 0}
   speed: {x: 10, y: 10}
+  attackCounter: 0
+  collidingEnemy: {fileID: 0}
+  isAttacking: 0
 --- !u!70 &2050180693
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -3321,3 +3328,99 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   txt: {fileID: 889354540}
+--- !u!82 &2050180699
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050180691}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 37b576426e7c434488ddcfb25f387176, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
