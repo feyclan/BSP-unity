@@ -243,6 +243,7 @@ MonoBehaviour:
   maxRoomSize: 10
   floorTile: {fileID: 7971457949744144338, guid: c24ac1642b9953142b37f930a865e98c, type: 3}
   corridorTile: {fileID: 8331066786387166986, guid: 79b7a22ec8bb2a542900acf04c9ea491, type: 3}
+  well: {fileID: 4863355952554908545, guid: d39672cc18ccd9545840277c51264e6f, type: 3}
   door: {fileID: 3674335524305204184, guid: 73b3f124f09cdda43b4e45de966261a1, type: 3}
 --- !u!4 &69793609
 Transform:
@@ -3222,11 +3223,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f929248d997d24fa80adaa46f30d2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_rigidbody: {fileID: 2050180694}
-  OnceJumpRayCheck: 0
-  speed: {x: 10, y: 10}
   board: {fileID: 69793608}
   lastPosition: {x: 0, y: 0, z: 0}
+  m_rigidbody: {fileID: 2050180694}
+  speed: {x: 10, y: 10}
 --- !u!70 &2050180693
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -11,10 +11,13 @@ public class BoardManager : MonoBehaviour
     public GameObject floorTile;
     public GameObject corridorTile;
     public GameObject[,] boardPositionsFloor;
-    public GameObject door;
     public SubDungeon dungeon;
     public List<SubDungeon> dungeons = new List<SubDungeon>(); 
     public static List<Rect> corridors = new List<Rect>();
+    
+    //-- Prefabs --//
+    public GameObject well;
+    public GameObject door;
 
     public void CreateBSP(SubDungeon subDungeon)
     {
@@ -192,6 +195,7 @@ public class BoardManager : MonoBehaviour
         DrawCorridors(rootSubDungeon);
         DrawRooms(rootSubDungeon);
         PlaceExit();
+        PlaceWells();
     }
 
     public void Reset()
@@ -216,5 +220,20 @@ public class BoardManager : MonoBehaviour
         var doorPosY = lastRoom.room.position.y+lastRoom.room.height;
         var doorGO = Instantiate(door, new Vector3(doorPosX, doorPosY, 0f), Quaternion.identity);
         doorGO.transform.parent = transform;
+    }
+
+    public void PlaceWells()
+    {
+        for (var i = 0; i < dungeons.Count; i++)
+        {
+            // retrieve the current room
+            var room = dungeons[i];
+            // compute the coordinates of the well (bottom middle)
+            var x = room.room.x + (room.room.width / 2);
+            var y = room.room.y;
+            // Place a well for the NPC to heal
+            var wellGO = Instantiate(well, new Vector3(x, y, 0f), Quaternion.identity);
+            wellGO.transform.parent = transform;
+        }
     }
 }
