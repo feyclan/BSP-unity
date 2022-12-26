@@ -9,6 +9,7 @@ public class BoardManager : MonoBehaviour
     public int boardRows, boardColumns;
     public int minRoomSize, maxRoomSize;
     public GameObject floorTile;
+    public GameObject floorTile22;
     public GameObject corridorTile;
     public GameObject[,] boardPositionsFloor;
     public SubDungeon dungeon;
@@ -162,7 +163,17 @@ public class BoardManager : MonoBehaviour
             {
                 for (int j = (int)subDungeon.room.y; j < subDungeon.room.yMax; j++)
                 {
-                    GameObject instance = Instantiate(floorTile, new Vector3(i, j, 0f), Quaternion.identity) as GameObject;
+                    int pick = Random.Range(1,3);
+                    GameObject tile;
+                    if(pick == 1)
+                    {
+                        tile = floorTile;
+                    }
+                    else
+                    {
+                        tile = floorTile22;
+                    }
+                    GameObject instance = Instantiate(tile, new Vector3(i, j, 0f), Quaternion.identity) as GameObject;
                     instance.transform.SetParent(transform);
                     boardPositionsFloor[i, j] = instance;
                 }
