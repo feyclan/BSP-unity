@@ -67,16 +67,19 @@ public class Zombie : MonoBehaviour
         }
     }
 
-    // private void OnCollisionStay2D(Collision2D col)
-    // {
-    //     if (col.collider.CompareTag("Player"))
-    //     {
-    //         //-- Chase the player
-    //         var player = GameObject.FindGameObjectsWithTag("Player")[0];
-    //         var h = player.transform.GetComponent<Health>();
-    //         h.Hit(gameObject, damage);
-    //     }
-    // }
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("Well"))
+        {
+            var health = GetComponent<Health>();
+            // NPC was fleeing
+            if (health.health <= 20)
+            {
+                health.health = 100;
+                health.UpdateHP();
+            }
+        }
+    }
 
     public void NextPatrolPoint()
     {

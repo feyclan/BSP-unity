@@ -3595,15 +3595,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      TX Village Props Platform S: 21300216
-      TX Village Props Road Sign Text C: 21300050
+      TX Village Props Barrel: 21300008
       TX Village Props Spike: 21300228
+      TX Village Props Clother Hanger Rope A: 21300234
       TX Village Props Fence B Rail: 21300040
       TX Village Props Well: 21300066
       TX Village Props Statue Bouquet: 21300152
-      TX Village Props Clother Hanger Rope A: 21300234
-      TX Village Props Clother Hanger Pillar B: 21300232
       TX Village Props Chest Silver: -8851566310641887263
+      TX Village Props Flower A: 21300100
+      TX Village Props Clother Hanger Pillar B: 21300232
       TX Village Props Bush A: 21300110
       TX Village Props Bucket: 21300068
       TX Village Props Barricade: 21300214
@@ -3656,13 +3656,13 @@ TextureImporter:
       TX Village Props Grass F: 21300106
       TX Village Props Table: 21300172
       TX Village Props Apple: 21300178
+      TX Village Props Cloth E: 21300248
       TX Village Props Billboard: 21300052
       TX Village Props Bush B: 21300112
       TX Village Props Rock A: 21300134
       TX Village Props Cloth B: 21300238
       TX Village Props Stall Fruit A: 21300206
       TX Village Props Ladder Side RB: -996102965649306420
-      TX Village Props Cloth E: 21300248
       TX Village Props Sunflower C: 21300266
       TX Village Props Road Lamp Light Off: 21300018
       TX Village Props Cloth C: 21300240
@@ -3674,7 +3674,6 @@ TextureImporter:
       TX Village Props Stall Table: 21300194
       TX Village Props Pumpkin A: 21300256
       TX Village Props Fence A Rail C: 21300034
-      TX Village Props Stump: 21300062
       TX Village Props Clother Hanger Clip: 21300244
       TX Village Props Crate Small: 21300002
       TX Village Props Ladder Side RM: -8353649271199622519
@@ -3682,6 +3681,7 @@ TextureImporter:
       TX Village Props Chest Iron: 21300006
       TX Village Props Axe: 21300064
       TX Village Props Weapon Rack: 21300162
+      TX Village Props Stump: 21300062
       TX Village Props Billboard Noti C: 21300060
       TX Village Props Grass A: 21300094
       TX Village Props Grass C: 21300098
@@ -3737,8 +3737,8 @@ TextureImporter:
       TX Village Props Archert Target: 21300154
       TX Village Props Grass E: 21300104
       TX Village Props Fence A Pillar A: 21300024
-      TX Village Props Barrel: 21300008
-      TX Village Props Flower A: 21300100
+      TX Village Props Road Sign Text C: 21300050
+      TX Village Props Platform S: 21300216
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

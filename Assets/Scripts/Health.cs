@@ -40,7 +40,7 @@ public class Health : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void UpdateHP()
+    public void UpdateHP()
     {
         txt.text = $"Health: {health}";
     }
