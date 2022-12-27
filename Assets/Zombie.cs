@@ -16,16 +16,7 @@ public class Zombie : MonoBehaviour
     public int patrolSpeed = 2;
     public int chasingSpeed = 5;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int damage = 5;
 
     public void InitializePatrolRoute()
     {
@@ -66,7 +57,26 @@ public class Zombie : MonoBehaviour
         {
             NextPatrolPoint();
         }
+
+        if (col.collider.CompareTag("Player"))
+        {
+            //-- Chase the player
+            var player = GameObject.FindGameObjectsWithTag("Player")[0];
+            var h = player.transform.GetComponent<Health>();
+            h.Hit(gameObject, damage);
+        }
     }
+
+    // private void OnCollisionStay2D(Collision2D col)
+    // {
+    //     if (col.collider.CompareTag("Player"))
+    //     {
+    //         //-- Chase the player
+    //         var player = GameObject.FindGameObjectsWithTag("Player")[0];
+    //         var h = player.transform.GetComponent<Health>();
+    //         h.Hit(gameObject, damage);
+    //     }
+    // }
 
     public void NextPatrolPoint()
     {

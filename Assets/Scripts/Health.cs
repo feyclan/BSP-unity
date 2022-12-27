@@ -33,6 +33,10 @@ public class Health : MonoBehaviour
 
     public void Die()
     {
+        if (gameObject.CompareTag("Player"))
+        {
+            Application.Quit();
+        }
         Destroy(gameObject);
     }
 

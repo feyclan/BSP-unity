@@ -243,8 +243,10 @@ public class BoardManager : MonoBehaviour
             var x = room.room.x + (room.room.width / 2);
             var y = room.room.y;
             // Place a well for the NPC to heal
-            var wellGO = Instantiate(well, new Vector3(x, y, 0f), Quaternion.identity);
+            var wellGO = Instantiate(well, new Vector3(x, y, -9f), Quaternion.identity);
             wellGO.transform.parent = transform;
+            // Save the well in the room
+            room.well = wellGO;
         }
     }
 }

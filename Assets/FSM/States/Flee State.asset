@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f5a7a69b3934b9fb622f96ce80dea16, type: 3}
-  m_Name: Flee State
+  m_Name: Flee STate
   m_EditorClassIdentifier: 
   Action:
   - {fileID: 11400000, guid: 778ae03acd0b0a4a2b0ac0b3a465de66, type: 2}
   Transitions:
-  - {fileID: 11400000, guid: 32b753475ad180e8d8639fd3f9c57c8b, type: 2}
+  - {fileID: 11400000, guid: dff0897e2339c3745b6a016a75f9200a, type: 2}

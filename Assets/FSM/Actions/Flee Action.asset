@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcafe92edb70c26038f210aeb4eae427, type: 3}
+  m_Script: {fileID: 11500000, guid: 74e7b1cb617944dab65ea0c1044a7c59, type: 3}
   m_Name: Flee Action
   m_EditorClassIdentifier: 
-  speed: 2

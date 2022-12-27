@@ -9,6 +9,7 @@ namespace BSP
         public SubDungeon left, right;
         public Rect rect;
         public Rect room = new Rect(-1, -1, 0, 0); // i.e null
+        public GameObject well;
         public int debugId;
 
         private static int debugCounter = 0;
