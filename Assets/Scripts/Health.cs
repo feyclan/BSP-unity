@@ -12,11 +12,10 @@ public class Health : MonoBehaviour
 
     public void Hit(GameObject attacker, int damage)
     {
-        Debug.Log($"{attacker} hit {gameObject.tag}");
         health -= damage;
         if (health <= 0)
         {
-            if (attacker.tag == "Player")
+            if (attacker.CompareTag("Player"))
             {
                 var score = attacker.GetComponent<Score>();
                 score.AddXP(100);

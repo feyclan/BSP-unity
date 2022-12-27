@@ -3037,8 +3037,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ad7f865c607d4a8cb1407f92b744eaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 2050180691}
-  animator: {fileID: 0}
+  player: {fileID: 2050180692}
+  animator: {fileID: 1818555812}
   damage: 10
 --- !u!70 &2023909760
 CapsuleCollider2D:
@@ -3262,7 +3262,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
