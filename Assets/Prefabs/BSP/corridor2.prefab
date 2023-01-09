@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3069991288262230411
+--- !u!1 &192267311604512049
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,37 +8,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3942200273370599418}
-  - component: {fileID: 8301126386176604099}
+  - component: {fileID: 7258116207045697879}
+  - component: {fileID: 7572528970778149972}
   m_Layer: 0
-  m_Name: gangpad
+  m_Name: corridor2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3942200273370599418
+--- !u!4 &7258116207045697879
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3069991288262230411}
+  m_GameObject: {fileID: 192267311604512049}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.4332004, y: -2.6762042, z: 0}
+  m_LocalPosition: {x: 9.954452, y: -5.607026, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8301126386176604099
+--- !u!212 &7572528970778149972
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3069991288262230411}
+  m_GameObject: {fileID: 192267311604512049}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f5b6d58d6ce79a549851476e547cd593, type: 3}
-  m_Color: {r: 0.6792453, g: 0.5928788, b: 0.5344251, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 45cf1f8f833c8c743a7fa0dcd49fd2c4, type: 3}
+  m_Color: {r: 0.6784314, g: 0.5921569, b: 0.53333336, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

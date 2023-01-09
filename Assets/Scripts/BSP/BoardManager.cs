@@ -9,8 +9,11 @@ public class BoardManager : MonoBehaviour
     public int boardRows, boardColumns;
     public int minRoomSize, maxRoomSize;
     public GameObject floorTile;
-    public GameObject floorTile22;
+    public GameObject floorTile2;
+    public GameObject floorTile3;
     public GameObject corridorTile;
+    public GameObject corridorTile2;
+
     public GameObject[,] boardPositionsFloor;
     public SubDungeon dungeon;
     public List<SubDungeon> dungeons = new List<SubDungeon>(); 
@@ -141,7 +144,18 @@ public class BoardManager : MonoBehaviour
                 {
                     if (boardPositionsFloor[i, j] == null)
                     {
-                        GameObject instance = Instantiate(corridorTile, new Vector3(i, j, 0f), Quaternion.identity) as GameObject;
+                        int pick = Random.Range(1, 4);
+
+                        GameObject cor;
+                        if (pick == 1)
+                        {
+                            cor = corridorTile;
+                        }
+                        else
+                        {
+                            cor = corridorTile2;
+                        }
+                        GameObject instance = Instantiate(cor, new Vector3(i, j, 0.0001f), Quaternion.identity) as GameObject;
                         instance.transform.SetParent(transform);
                         boardPositionsFloor[i, j] = instance;
                     }
@@ -163,15 +177,18 @@ public class BoardManager : MonoBehaviour
             {
                 for (int j = (int)subDungeon.room.y; j < subDungeon.room.yMax; j++)
                 {
-                    int pick = Random.Range(1,3);
+                    int pick = Random.Range(1,4);
                     GameObject tile;
                     if(pick == 1)
                     {
                         tile = floorTile;
                     }
-                    else
+                    else if (pick == 2)
                     {
-                        tile = floorTile22;
+                        tile = floorTile2;
+                    } else
+                    {
+                        tile = floorTile3;
                     }
                     GameObject instance = Instantiate(tile, new Vector3(i, j, 0f), Quaternion.identity) as GameObject;
                     instance.transform.SetParent(transform);
