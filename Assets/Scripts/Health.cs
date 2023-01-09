@@ -7,12 +7,20 @@ using TMPro;
 
 public class Health : MonoBehaviour
 {
-    public int health = 100;
+    public int health = 0;
+    public int maxHealth = 100;
     public TextMeshProUGUI txt;
+
+
+    void Start()
+    {
+        health = maxHealth;
+    }
 
     public void Hit(GameObject attacker, int damage)
     {
         health -= damage;
+
         if (health <= 0)
         {
             if (attacker.CompareTag("Player"))
@@ -22,13 +30,12 @@ public class Health : MonoBehaviour
             }
             Die();
         }
-        UpdateHP();
+
     }
 
     public void Recover()
     {
         health += 1;
-        UpdateHP();
     }
 
     public void Die()
@@ -40,8 +47,4 @@ public class Health : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void UpdateHP()
-    {
-        txt.text = $"Health: {health}";
-    }
 }
