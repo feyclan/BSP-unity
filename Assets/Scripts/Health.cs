@@ -9,8 +9,6 @@ public class Health : MonoBehaviour
 {
     public int health = 100;
     public TextMeshProUGUI txt;
-    public HealthBar healthBar;
-
 
     public void Hit(GameObject attacker, int damage)
     {
@@ -24,7 +22,6 @@ public class Health : MonoBehaviour
             }
             Die();
         }
-
         UpdateHP();
     }
 
@@ -44,17 +41,7 @@ public class Health : MonoBehaviour
     }
 
     public void UpdateHP()
-    {   
-
-            if (gameObject.CompareTag("Player"))
-            {
-            healthBar.SetHealth( health );  
-            }
-
-            if (gameObject.CompareTag("Enemy"))
-            {
-            txt.text = $"Health: {health}";                 
-            }
+    {
+        txt.text = $"Health: {health}";
     }
-    
 }
