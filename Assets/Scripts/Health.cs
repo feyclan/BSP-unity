@@ -27,6 +27,7 @@ public class Health : MonoBehaviour
             {
                 var score = attacker.GetComponent<Score>();
                 score.AddXP(100);
+                source[2].Play();
             }
             Die();
         }
