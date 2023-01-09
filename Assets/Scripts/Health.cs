@@ -9,16 +9,25 @@ public class Health : MonoBehaviour
 {
     public int health = 100;
     public TextMeshProUGUI txt;
+    private AudioSource[] source;
+    private void Start()
+    {
+       
+        source = GameObject.Find("Player").GetComponents<AudioSource>();
+    }
 
     public void Hit(GameObject attacker, int damage)
     {
         health -= damage;
+        source[1].Play();
+        
         if (health <= 0)
         {
             if (attacker.CompareTag("Player"))
             {
                 var score = attacker.GetComponent<Score>();
                 score.AddXP(100);
+                source[2].Play();
             }
             Die();
         }
