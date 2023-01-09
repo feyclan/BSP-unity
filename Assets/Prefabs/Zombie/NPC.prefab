@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 4519316185850060778}
   m_Layer: 0
   m_Name: NPC
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -225,6 +225,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 115a505b22352b76c90fd183b2ba2daa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minXPosition: -10
+  minYPosition: -4
+  maxXPosition: 10
+  maxYPosition: 4
   _initialState: {fileID: 11400000, guid: 7791fd9cdf6e5fe94a91b7147165dba4, type: 2}
 --- !u!114 &8834566834257129186
 MonoBehaviour:
@@ -239,7 +243,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  maxHealth: 100
   txt: {fileID: 6217193378771380185}
 --- !u!50 &7940297089152404698
 Rigidbody2D:

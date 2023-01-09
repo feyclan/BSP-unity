@@ -12,7 +12,7 @@ public class Swordman : MonoBehaviour
     public Rigidbody2D m_rigidbody;
     private CapsuleCollider2D m_CapsulleCollider;
     public Animator m_Anim;
-    private HealthPlayer currentHealthPlayer;
+    private Health health;
     private MainPlayer mainPlayer;
     private float m_MoveX;
     private float m_MoveY;
@@ -25,7 +25,6 @@ public class Swordman : MonoBehaviour
     public bool isAttacking = false;
     // actually look for where tf the mouse is checked and store the variable there instead
     
-
     
     private void Start()
     {
@@ -33,8 +32,7 @@ public class Swordman : MonoBehaviour
         m_CapsulleCollider  = transform.GetComponent<CapsuleCollider2D>();
         m_Anim = transform.Find("model").GetComponent<Animator>();
         m_rigidbody = transform.GetComponent<Rigidbody2D>();
-        //currentHealthPlayer = transform.GetComponent<HealthPlayer>();
-        //Debug.LogFormat("Points de vie restants : {0}", currentHealthPlayer);
+        health = transform.GetComponent<Health>();
         // var player = GameObject.FindGameObjectsWithTag("Player")[0];
         mainPlayer = gameObject.GetComponent<MainPlayer>();
         source = GetComponent<AudioSource>();
@@ -50,10 +48,7 @@ public class Swordman : MonoBehaviour
         // Process the player movement
         ProcessInput();
         HandleAttack();
-
     }
-
-    
 
     private void HandleAttack()
     {
@@ -67,20 +62,6 @@ public class Swordman : MonoBehaviour
             attackCounter += 1;
         }
     }
-
-    /*
-
-    void OnCollisionEnter2D(Collision2D collision)
-        {
-            if (collision.gameObject.tag == "Enemy")
-            {
-                
-                currentHealthPlayer -= 5;
-                Debug.LogFormat("Points de vie restants : {0}", currentHealthPlayer);
-            }
-            
-        }
-    */
 
     public void ProcessInput()
     {

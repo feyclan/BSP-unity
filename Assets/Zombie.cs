@@ -57,28 +57,14 @@ public class Zombie : MonoBehaviour
         {
             NextPatrolPoint();
         }
-    /*
+
         if (col.collider.CompareTag("Player"))
         {
             //-- Chase the player
             var player = GameObject.FindGameObjectsWithTag("Player")[0];
-            Debug.Log("Le player est " + player);
-            var h = player.transform.GetComponent<HealthPlayer>();
-            //h.Hit(gameObject, damage);
-            h.Hit("Player", damage);
-        }
-    */
-        if (col.collider.CompareTag("Player"))
-        {
-            //-- Chase the player
-            var player = GameObject.FindGameObjectsWithTag("Player")[0];
-            Debug.Log("Le player est " + player);
-            var h = player.transform.GetComponent<HealthPlayer>();
-            Debug.Log("Le hest " + h);
-            //h.Hit(gameObject, damage);
+            var h = player.transform.GetComponent<Health>();
             h.Hit(gameObject, damage);
         }
-
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -90,7 +76,7 @@ public class Zombie : MonoBehaviour
             if (health.health <= 20)
             {
                 health.health = 100;
-                //health.UpdateHP();
+                health.UpdateHP();
             }
         }
     }
